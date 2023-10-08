@@ -21,8 +21,8 @@ func printCommandEvents(analyticsChannel <-chan *slacker.CommandEvent) {
 	}
 }
 
-func calculate_age() {
-	bot := slacker.NewClient(os.Getenv("SLACK_AGE_BOT_TOKEN"), os.Getenv("SLACK_AGE_APP_TOKEN"))
+func custom_bot() {
+	bot := slacker.NewClient(os.Getenv("SLACK_CUSTOM_BOT_TOKEN"), os.Getenv("SLACK_CUSTOM_APP_TOKEN"))
 	go printCommandEvents(bot.CommandEvents())
 	bot.Command("Hello", &slacker.CommandDefinition{
 		Handler: func(botCtx slacker.BotContext, request slacker.Request, response slacker.ResponseWriter) {
@@ -75,10 +75,6 @@ func upload_file() {
 }
 
 func main() {
-	os.Setenv("SLACK_FILE_BOT_TOKEN", "xoxb-4462018505568-5973904069431-EYD1DuOVBDobrCajM2PysBRA")
-	os.Setenv("SLACK_AGE_BOT_TOKEN", "xoxb-4462018505568-6007327244417-gbVaG24z59Ov57pW9cU7MZYk")
-	os.Setenv("SLACK_AGE_APP_TOKEN", "xapp-1-A060HKSEXRN-5992133251221-dee034e996d29fe2d23dc5a7d944b58a043d8f651754c63c9ab9c3d14386f8e8")
-	os.Setenv("CHANNEL_ID", "C04D8U36JV7")
 	upload_file()
-	calculate_age()
+	custom_bot()
 }
