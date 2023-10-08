@@ -21,10 +21,10 @@ func printCommandEvents(analyticsChannel <-chan *slacker.CommandEvent) {
 	}
 }
 
-func calculate_age() {
-	bot := slacker.NewClient(os.Getenv("SLACK_AGE_BOT_TOKEN"), os.Getenv("SLACK_AGE_APP_TOKEN"))
+func custom_bot() {
+	bot := slacker.NewClient(os.Getenv("SLACK_CUSTOM_BOT_TOKEN"), os.Getenv("SLACK_CUSTOM_APP_TOKEN"))
 	go printCommandEvents(bot.CommandEvents())
-	bot.Command("hello", &slacker.CommandDefinition{
+	bot.Command("Hello", &slacker.CommandDefinition{
 		Handler: func(botCtx slacker.BotContext, request slacker.Request, response slacker.ResponseWriter) {
 			response.Reply("Hi, How are you??")
 		},
@@ -76,5 +76,5 @@ func upload_file() {
 
 func main() {
 	upload_file()
-	calculate_age()
+	custom_bot()
 }
