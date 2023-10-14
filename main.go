@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"os/exec"
 	"strconv"
 
 	"github.com/shomali11/slacker"
@@ -62,16 +63,32 @@ func upload_file() {
 	fileArr := []string{"files/amit.pdf", "files/capi.yaml"}
 
 	for i := 0; i < len(fileArr); i++ {
+		inputFilePath := fileArr[i]
+		pdfFilePath := inputFilePath + ".pdf"
+
+		pandocCmd := exec.Command("pandoc", inputFilePath, "-o", pdfFilePath)
+		err := pandocCmd.Run()
+
+		if err != nil {
+			fmt.Printf("Error converting to PDF: %s\n", err)
+			continue
+		}
+
 		params := slack.FileUploadParameters{
 			Channels: channelArr,
 			File:     fileArr[i],
 		}
+
 		file, err := api.UploadFile(params)
 		if err != nil {
-			fmt.Printf("%s\n", err)
+			fmt.Printf("Error uploading PDF: %s\n", err)
+			continue
 		}
+
 		fmt.Printf("Name: %s, URL:%s\n", file.Name, file.URL)
+
 	}
+
 }
 
 func main() {
