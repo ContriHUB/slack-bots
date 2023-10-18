@@ -72,7 +72,7 @@ func upload_file() {
 		return
 	}
 	channelArr := []string{os.Getenv("CHANNEL_ID")}
-	fileArr := []string{"files/amit.pdf", "files/capi.yaml","files/test1.txt","files/test2.txt"}
+	fileArr := []string{"files/amit.pdf", "files/capi.yaml"}
 
 	for i := 0; i < len(fileArr); i++ {
 		  fileInfo, err := os.Stat(fileArr[i])
