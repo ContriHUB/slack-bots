@@ -1,6 +1,6 @@
 ### Prerequisites <br>
 Install go v1.20+ or higher <br>
-Join this slack space : [click here](https://join.slack.com/t/slack-ykk3187/shared_invite/zt-24jmn6ipy-ChgGJgobx0SCSx5mYbIp0Q)
+Join this slack space: [click here](https://join.slack.com/t/slack-ykk3187/shared_invite/zt-24jmn6ipy-ChgGJgobx0SCSx5mYbIp0Q)
 
 ### Setup of the project :
 - Fork the repository and then clone that forked repository. <br>
