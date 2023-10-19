@@ -35,7 +35,10 @@ func custom_bot() {
 	go printCommandEvents(bot.CommandEvents())
 	bot.Command("Hello", &slacker.CommandDefinition{
 		Handler: func(botCtx slacker.BotContext, request slacker.Request, response slacker.ResponseWriter) {
-			response.Reply("Hi, How are you??")
+			if err:= response.Reply("Hi, How are you??"); err != nil {
+				log.Printf("Error: %s\n", err)
+			}
+			// response.Reply("Hi, How are you??")
 		},
 	})
 
@@ -50,7 +53,9 @@ func custom_bot() {
 			}
 			age := 2023 - yob
 			r := fmt.Sprintf("age is %d", age)
+			if err:= response.Reply(r); err != nil {
 			response.Reply(r)
+			}
 		},
 	})
 
@@ -72,7 +77,7 @@ func upload_file() {
 		return
 	}
 	channelArr := []string{os.Getenv("CHANNEL_ID")}
-	fileArr := []string{"files/amit.pdf", "files/capi.yaml"}
+	fileArr := []string{"files/amit.pdf", "files/capi.yaml","files/test1.pdf"}
 
 	for i := 0; i < len(fileArr); i++ {
 		  fileInfo, err := os.Stat(fileArr[i])
